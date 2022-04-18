@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_name: MyString
+  lead_id: 1
+  created_by: 1
+  modified_by: 1
+
+two:
+  team_name: MyString
+  lead_id: 1
+  created_by: 1
+  modified_by: 1

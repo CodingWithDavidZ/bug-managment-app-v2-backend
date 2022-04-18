@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  issue_title: MyString
+  issue_description: MyText
+  identified_by: 1
+  identified_date: 2022-04-11
+  project_id: 1
+  assigned_to: 1
+  status: 1
+  status_modified_date: 2022-04-11
+  priority: 1
+  target_resolution_date: 2022-04-11
+  progress: 1
+  actual_resolution_date: 2022-04-11
+  resolution_summary: MyText
+  modified_by: 1
+  approved_by: 1
+  image_url: MyString
+  approved: false
+  comment_id: 1
+  created_by: 1
+
+two:
+  issue_title: MyString
+  issue_description: MyText
+  identified_by: 1
+  identified_date: 2022-04-11
+  project_id: 1
+  assigned_to: 1
+  status: 1
+  status_modified_date: 2022-04-11
+  priority: 1
+  target_resolution_date: 2022-04-11
+  progress: 1
+  actual_resolution_date: 2022-04-11
+  resolution_summary: MyText
+  modified_by: 1
+  approved_by: 1
+  image_url: MyString
+  approved: false
+  comment_id: 1
+  created_by: 1
