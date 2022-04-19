@@ -1,11 +1,25 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: %i[ show update destroy ]
-  before_action :authorize, except: %i[ create update index ]
+  before_action :authorize, except: %i[ create update index sortOrder ]
+# This is a custom method I created.
   # GET /bugs
   def index
     @bugs = Bug.all
-
     render json: @bugs.order(created_at: :desc)
+  end
+
+  # '/bugs/sortOrder'
+  def sortOrder
+    
+    sortDirection = params[:sortDirection]
+    sortFilter = params[:sortFilter]
+    if sortDirection == 'Descending'
+    render json: Bug.sort_order(sortFilter).order(created_at: :desc)
+    elsif sortDirection == 'Ascending'
+    render json: Bug.sort_order(sortFilter).order(created_at: :asc)
+    else
+    render json: Bug.sort_order(sortFilter)
+    end
   end
 
   # GET /bugs/1
@@ -46,6 +60,6 @@ class BugsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bug_params
-      params.require(:bug).permit(:issue_title, :issue_description, :identified_by, :identified_date, :project_id, :assigned_to, :status, :status_modified_date, :priority, :target_resolution_date, :progress, :actual_resolution_date, :resolution_summary, :modified_by, :approved_by, :image_url, :approved, :comment_id, :created_by)
+      params.require(:bug).permit(:issue_title, :issue_description, :identified_by, :identified_date, :project_id, :assigned_to, :status, :status_modified_date, :priority, :target_resolution_date, :progress, :actual_resolution_date, :resolution_summary, :modified_by, :approved_by, :image_url, :approved, :comment_id, :created_by, :sortBy)
     end
 end

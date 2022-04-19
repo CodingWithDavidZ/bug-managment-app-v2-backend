@@ -27,8 +27,8 @@ sleep(1)
 	team =
 		Team.create!(
 			team_name: Faker::Team.creature,
-			lead_id: rand(1...11),
-			created_by: rand(1...11),
+			lead_id: rand(0...10),
+			created_by: rand(0...10),
 		)
 end
 puts 'Seeding of Teams Completed'
@@ -52,8 +52,8 @@ puts 'Creating and Seeding Projects'
 				Faker::Date.between(from: Date.today - 1.year, to: Date.today),
 			target_end_date:
 				Faker::Date.between(from: Date.today, to: Date.today + 1.year),
-			created_by: rand(1...11),
-			bug_id: rand(1...51),
+			created_by: rand(0...10),
+			bug_id: rand(0...50),
 			team_id: Team.all.sample.id,
 		)
 end
@@ -77,8 +77,8 @@ sleep(1)
 			username: Faker::Internet.user_name,
 			first_name: Faker::Name.first_name,
 			last_name: Faker::Name.last_name,
-			role: rand(1...4),
-			team_id: rand(1...5),
+			role: rand(0...3),
+			team_id: rand(0...4),
 			is_team_lead: false,
 			avatar: Faker::Avatar.image,
 			password: '123456',
@@ -104,15 +104,15 @@ sleep(1)
 		Bug.create!(
 			issue_title: Faker::Book.title,
 			issue_description: Faker::Hacker.say_something_smart,
-			identified_by: rand(1...11),
-			project_id: rand(1...5),
+			identified_by: rand(0...10),
+			project_id: rand(0...4),
 			assigned_to: User.all.sample.id,
 			created_by: User.all.sample.id,
-			status: rand(1...14),
-			priority: rand(1...6),
+			status: rand(0...13),
+			priority: rand(0...5),
 			target_resolution_date:
 				Faker::Date.between(from: Date.today, to: Date.today + 1.year),
-			progress: rand(1...11),
+			progress: rand(0...10),
 			approved: false,
 			image_url: Faker::Fillmurray.image,
 		)

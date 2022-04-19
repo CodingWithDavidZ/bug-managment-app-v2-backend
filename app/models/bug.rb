@@ -8,13 +8,26 @@ class Bug < ApplicationRecord
 
 	enum priority: ['Critical', 'Urgent', 'Medium', 'Low', 'Very Low']
 
-	#create a method to change the date format of created_at and updated_at to be more readable and return the entire row
-	# def make_date_format_more_readable
-	# 	Bug.map do |bug|
-	# 		bug.created_at = bug.created_at.strftime("%m/%d/%Y %H:%M")
-	# 		bug.updated_at = bug.updated_at.strftime("%m/%d/%Y %H:%M")
-	# 		but.target_resolution_date = bug.target_resolution_date.strftime("%m/%d/%Y %H:%M")
-	# 	end
-	# end
+	def self.sort_order(sortFilter)
+		open = ['Open', 'In Progress']
+		completed = ['Closed', 'Fixed', 'Duplicate Bug', 'Not Reproducible', 'Not a Bug', 'Ready For Next Release']
+		needs_approval = ['Fix Not Confirmed', 'Ready For Retest']
+		waiting = ['Missing Information', 'Pushed Back', 'On Hold', 'Ready For Retest']
 
+		# Maybe just do the filter here and handle order in the controller
+
+		if sortFilter == 'all'
+				return Bug.all
+		elsif sortFilter == 'inProgress'
+				return Bug.where(:status => open)
+		elsif sortFilter == 'waiting'
+				return Bug.where(:status => waiting)
+		elsif sortFilter == 'needsApproval'
+				return Bug.where(:status => needs_approval)
+		elsif sortFilter == 'completed'			
+				return Bug.where(:status => completed)	
+		else 
+			return @bug.errors.full_messages, status: :unprocessable_entity
+		end
+	end
 end
