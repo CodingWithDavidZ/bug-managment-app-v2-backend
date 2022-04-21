@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show update destroy ]
+  before_action :authorize
 
   # GET /comments
   def index
@@ -21,6 +22,18 @@ class CommentsController < ApplicationController
       render json: @comment, status: :created, location: @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
+    end
+  end
+
+  def addComment
+    bug_id = params[:bug_id]
+    comment_text =  params[:comment_text]
+    user_id = @current_user.id 
+    comment = Comment.new(:bug_id => bug_id, :comment_text => comment_text, :created_by => user_id)
+    if comment.save
+      render json: comment, status: :created
+    else
+      render json: comment.errors, status: :unprocessable_entity
     end
   end
 
