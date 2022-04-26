@@ -7,15 +7,19 @@ include ActionController::Cookies
 	private
 
 	def authorize
-  		@current_user = User.find_by(id: session[:user_id])
-  		render json: {errors: ["Not Authorized"]}, status: :unauthorized unless @current_user
+		@current_user = User.find(session[:user_id])
+		if @current_user.nil?
+			render json: {	errors: ["You are not logged in"]}, status: :unauthorized
+		else
+			return @current_user
+		end
 	end
 
 	def render_unprocessable_entity(exceptions)
 		render json: {
 				errors: exceptions.record.errors.full_messages,
-		       },
-		       status: :unprocessable_entity
+		},
+		status: :unprocessable_entity
 	end
 
 

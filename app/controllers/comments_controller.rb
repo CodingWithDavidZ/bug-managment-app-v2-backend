@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show update destroy ]
+  before_action :set_comment, only: %i[show update destroy]
   before_action :authorize
 
   # GET /comments
@@ -27,9 +27,14 @@ class CommentsController < ApplicationController
 
   def addComment
     bug_id = params[:bug_id]
-    comment_text =  params[:comment_text]
-    user_id = @current_user.id 
-    comment = Comment.new(:bug_id => bug_id, :comment_text => comment_text, :created_by => user_id)
+    comment_text = params[:comment_text]
+    user_id = @current_user.id
+    comment =
+      Comment.new(
+        bug_id: bug_id,
+        comment_text: comment_text,
+        created_by: user_id
+      )
     if comment.save
       render json: comment, status: :created
     else
@@ -52,13 +57,14 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def comment_params
-      params.require(:comment).permit(:comment_text, :created_by, :bug_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def comment_params
+    params.require(:comment).permit(:comment_text, :created_by, :bug_id)
+  end
 end

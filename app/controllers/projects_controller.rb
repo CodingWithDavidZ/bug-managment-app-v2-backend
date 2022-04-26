@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[ show update destroy ]
+  before_action :set_project, only: %i[show update destroy]
 
   # GET /projects
   def index
@@ -39,13 +39,25 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def project_params
-      params.require(:project).permit(:project_name, :start_date, :target_end_date, :actual_end_date, :created_by, :modified_by, :bug_id, :team_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def project_params
+    params
+      .require(:project)
+      .permit(
+        :project_name,
+        :start_date,
+        :target_end_date,
+        :actual_end_date,
+        :created_by,
+        :modified_by,
+        :bug_id,
+        :team_id
+      )
+  end
 end
