@@ -23,6 +23,7 @@ class Bug < ApplicationRecord
   enum priority: ['Critical', 'Urgent', 'Medium', 'Low', 'Very Low']
 
   def self.sort_order(sortFilter)
+   
     open = ['Open', 'In Progress']
     completed = [
       'Closed',
@@ -39,9 +40,6 @@ class Bug < ApplicationRecord
       'On Hold',
       'Ready For Retest'
     ]
-
-    # Maybe just do the filter here and handle order in the controller
-
     if sortFilter == 'all'
       return Bug.all
     elsif sortFilter == 'inProgress'
