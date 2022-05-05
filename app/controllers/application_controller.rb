@@ -16,6 +16,7 @@ include ActionController::Cookies
 	end
 
 	def render_unprocessable_entity(exceptions)
+		# byebug
 		render json: {
 				errors: exceptions.record.errors.full_messages,
 		},

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show update destroy]
 
+  # //! Not currently used
   # GET /projects
   def index
     @projects = Project.all

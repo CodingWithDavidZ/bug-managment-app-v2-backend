@@ -19,4 +19,5 @@ class User < ApplicationRecord
               maximum: 254
             },
             presence: true
+  validates :password, presence: true
 end

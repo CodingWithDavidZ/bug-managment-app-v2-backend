@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[show update destroy]
 
+  # //!Not currently Used
   # GET /teams
   def index
     @teams = Team.all
