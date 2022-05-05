@@ -3,6 +3,7 @@ class Bug < ApplicationRecord
   belongs_to :project, optional: true
   belongs_to :user, foreign_key: :created_by, optional: true
   belongs_to :user, foreign_key: :assigned_to, optional: true
+  validates :created_by, presence: true
 
   enum status: [
          'Open',

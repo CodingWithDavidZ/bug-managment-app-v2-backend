@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
         created_by: user_id
       )
     if comment.save
-      render json: comment, status: :created
+      render json: Bug.find(bug_id), status: :created
     else
       render json: comment.errors, status: :unprocessable_entity
     end

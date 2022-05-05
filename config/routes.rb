@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
 
   post '/bugs/sortOrder', to: 'bugs#sortOrder'
-  put '/bugs/:id/comments', to: 'comments#addComment'
+  post '/bugs/:id/comments', to: 'comments#addComment'
   post '/bugs/create', to: 'bugs#create'
 
   # Routing logic: fallback requests for React Router.
