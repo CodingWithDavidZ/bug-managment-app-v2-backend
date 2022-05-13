@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :authorize, except: %i[create update]
+  before_action :authorize, except: %i[create update]
 
   # GET /users
   def index
